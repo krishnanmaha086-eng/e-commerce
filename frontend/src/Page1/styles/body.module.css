@@ -1,0 +1,13 @@
+
+:root {
+  --bs-body-bg: #0b0b0b;
+  --bs-body-color: #0b0b0b;
+}
+
+html,
+body,
+#root {
+  background: #0b0b0b !important;
+  color: white;
+  min-height: 100%;
+}
