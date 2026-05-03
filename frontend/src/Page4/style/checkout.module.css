@@ -51,3 +51,89 @@
     border-radius: 12px;
     font-size: 18px;
 }
+
+@media (max-width: 992px) {
+    .wrapper {
+        width: 95%;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .left,
+    .right {
+        padding: 22px;
+        border-radius: 16px;
+    }
+
+    .left h1 {
+        font-size: 30px;
+    }
+
+    .left input,
+    .left select {
+        height: 48px;
+        font-size: 15px;
+        margin: 12px 0;
+    }
+
+    .item {
+        gap: 10px;
+        font-size: 15px;
+    }
+
+    .total {
+        font-size: 22px;
+    }
+
+    .right button {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 25px 0;
+    }
+
+    .wrapper {
+        width: 92%;
+    }
+
+    .left,
+    .right {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .left h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .left input,
+    .left select {
+        height: 45px;
+        font-size: 14px;
+        padding: 0 12px;
+    }
+
+    .item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        margin: 14px 0;
+        font-size: 14px;
+    }
+
+    .total {
+        font-size: 20px;
+        flex-direction: row;
+    }
+
+    .right button {
+        padding: 13px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+}
