@@ -12,7 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-    .connect("mongodb://127.0.0.1:27017/ecommerce")
+    .connect(
+        "mongodb+srv://Mayakrishnan:Mayakrishnan_0303@cluster0.m8pazqm.mongodb.net/ecommerce"
+    )
     .then(() => console.log("DB connected"))
     .catch((err) => console.log(err.message));
 
