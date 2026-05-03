@@ -28,7 +28,7 @@ export default function Navbar() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/products")
+            .get("https://mongodb-uri-kcd5.onrender.com/api/products")
             .then((res) => setProducts(res.data));
 
         updateCartCount();

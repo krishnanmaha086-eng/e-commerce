@@ -12,7 +12,7 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/login",
+        "https://mongodb-uri-kcd5.onrender.com/api/login",
         { email, password }
       );
 

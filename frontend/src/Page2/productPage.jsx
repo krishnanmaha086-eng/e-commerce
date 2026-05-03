@@ -56,7 +56,7 @@ export default function ProductPage() {
         if (!id) return;
 
         axios
-            .get(`http://localhost:5000/api/products/${id}`)
+            .get(`https://mongodb-uri-kcd5.onrender.com/api/products/${id}`)
             .then((res) => setProduct(res.data))
             .catch((err) => console.log(err));
     }, [id]);

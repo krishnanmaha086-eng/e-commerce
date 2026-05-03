@@ -21,7 +21,7 @@ export default function Products() {
     const fetchProducts = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:5000/api/products"
+                "https://mongodb-uri-kcd5.onrender.com/api/products"
             );
 
             setProducts(res.data);
