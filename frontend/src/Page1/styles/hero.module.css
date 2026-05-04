@@ -40,6 +40,8 @@
     font-size: 18px;
     font-weight: 700;
     transition: 0.3s;
+    max-width: 200px;
+    text-align: center;
 }
 
 .heroBtn:hover {

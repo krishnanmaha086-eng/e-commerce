@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { showToast } from "../utils/cartToast";
 import styles from "./style/checkout.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutPage() {
     const [cartItems, setCartItems] = useState([]);
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [payment, setPayment] = useState("COD");
+
+    const navigate = useNavigate();
 
     const getCartKey = () => {
         const user = JSON.parse(
@@ -21,9 +24,7 @@ export default function CheckoutPage() {
     useEffect(() => {
         const cart =
             JSON.parse(
-                localStorage.getItem(
-                    getCartKey()
-                )
+                localStorage.getItem(getCartKey())
             ) || [];
 
         setCartItems(cart);
@@ -35,35 +36,44 @@ export default function CheckoutPage() {
         0
     );
 
-    const delivery =
-        subtotal > 0 ? 99 : 0;
-
+    const delivery = subtotal > 0 ? 99 : 0;
     const total = subtotal + delivery;
 
     const placeOrder = () => {
-        if (!address || !phone) {
+        if (!address.trim()) {
+            showToast("Enter address ❌");
+            return;
+        }
+
+        if (!phone.trim()) {
+            showToast("Enter phone number ❌");
+            return;
+        }
+
+        if (phone.length < 10) {
             showToast(
-                "Fill all details ❌"
+                "Enter valid phone number ❌"
             );
             return;
         }
 
-        localStorage.removeItem(
-            getCartKey()
+        localStorage.setItem(
+            "checkoutData",
+            JSON.stringify({
+                address,
+                phone,
+                payment,
+                total
+            })
         );
 
-        showToast(
-            "Order Placed Successfully ✅"
-        );
-
-        setTimeout(() => {
-            window.location = "/";
-        }, 1200);
+        navigate("/transaction");
     };
 
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
+                {/* Left */}
                 <div className={styles.left}>
                     <h1>Checkout</h1>
 
@@ -72,9 +82,7 @@ export default function CheckoutPage() {
                         placeholder="Full Address"
                         value={address}
                         onChange={(e) =>
-                            setAddress(
-                                e.target.value
-                            )
+                            setAddress(e.target.value)
                         }
                     />
 
@@ -83,18 +91,14 @@ export default function CheckoutPage() {
                         placeholder="Phone Number"
                         value={phone}
                         onChange={(e) =>
-                            setPhone(
-                                e.target.value
-                            )
+                            setPhone(e.target.value)
                         }
                     />
 
                     <select
                         value={payment}
                         onChange={(e) =>
-                            setPayment(
-                                e.target.value
-                            )
+                            setPayment(e.target.value)
                         }
                     >
                         <option value="COD">
@@ -109,6 +113,7 @@ export default function CheckoutPage() {
                     </select>
                 </div>
 
+                {/* Right */}
                 <div className={styles.right}>
                     <h2>Order Summary</h2>
 
@@ -122,9 +127,7 @@ export default function CheckoutPage() {
                             </span>
 
                             <span>
-                                ₹
-                                {item.price *
-                                    item.qty}
+                                ₹{item.price * item.qty}
                             </span>
                         </div>
                     ))}
@@ -136,9 +139,7 @@ export default function CheckoutPage() {
                         <span>₹{total}</span>
                     </div>
 
-                    <button
-                        onClick={placeOrder}
-                    >
+                    <button onClick={placeOrder}>
                         Place Order
                     </button>
                 </div>

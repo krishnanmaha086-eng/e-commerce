@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./style/cart.module.css";
 import { showToast } from "../utils/cartToast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CartPage() {
     const [cartItems, setCartItems] =
@@ -43,6 +43,8 @@ export default function CartPage() {
             );
     }, []);
 
+
+    const navigate = useNavigate();
     const updateCart = (updatedCart) => {
         setCartItems(updatedCart);
 
@@ -83,6 +85,15 @@ export default function CartPage() {
         );
 
         updateCart(updated);
+    };
+
+    const handleCheckout = () => {
+        if (cartItems.length === 0) {
+            showToast("Your cart is empty ❌");
+            return;
+        }
+
+        navigate("/checkout");
     };
 
     const removeItem = (id) => {
@@ -152,7 +163,7 @@ export default function CartPage() {
                                             )
                                         }
                                     >
-                                        −
+                                        -
                                     </button>
 
                                     <span>
@@ -211,11 +222,10 @@ export default function CartPage() {
                         <span>₹{total}</span>
                     </div>
 
-                    <Link to="/checkout">
-                        <button className={styles.checkoutBtn}>
-                            Proceed to Checkout
-                        </button>
-                    </Link>
+                    <button onClick={handleCheckout}>
+                        Proceed to Checkout
+                    </button>
+
                 </div>
             </div>
         </div>

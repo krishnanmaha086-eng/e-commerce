@@ -14,6 +14,8 @@ import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 
 import CheckoutPage from "./Page4/CheckoutPage";
+import TransactionPage from "./Page5/TransactionPage";
+import OrderSuccess from "./Page6/OrderSuccess";
 
 const Router = createBrowserRouter([
   {
@@ -90,6 +92,26 @@ const Router = createBrowserRouter([
       <>
         <Navbar />
         <CheckoutPage />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: "/transaction",
+    element: (
+      <>
+        <Navbar />
+        <TransactionPage />
+        <Footer />
+      </>
+    )
+  },
+  {
+    path: "/success",
+    element: (
+      <>
+        <Navbar />
+        <OrderSuccess />
         <Footer />
       </>
     )
