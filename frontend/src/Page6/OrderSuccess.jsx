@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./style/orderSuccess.module.css";
+import styles from "../Page6/style/OrderSuccess.module.css";
 
 export default function OrderSuccess() {
     const navigate = useNavigate();
